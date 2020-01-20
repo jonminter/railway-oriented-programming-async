@@ -4,14 +4,31 @@
   "description": "Demo for using Railway Oriented Programming with async functions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check",
+    "example-async-railway": "ts-node src/example-async-railway.ts",
+    "example-rxjs": "ts-node src/example-rxjs.ts"
   },
-  "author": "",
+  "author": "Jon Minter <iam@jonminter.dev>",
   "license": "ISC",
   "dependencies": {
+    "gts": "^1.1.2",
     "rxjs": "^6.5.4",
     "true-myth": "^4.0.0",
     "ts-node": "^8.6.2",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.0.3",
+    "@types/uuid": "^3.4.6",
+    "gts": "^1.1.2",
+    "typescript": "~3.7.0"
   }
 }

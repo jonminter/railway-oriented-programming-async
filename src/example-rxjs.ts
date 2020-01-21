@@ -10,10 +10,11 @@ import {
   saveUser,
   printSavedUser,
   printError,
+  UserError,
 } from './lib';
 
 const dorothyVaughan = new User('dvaughan', 'Dorothy', 'Vaughan');
-of(Result.ok<User, string>(dorothyVaughan))
+of(Result.ok<User, UserError>(dorothyVaughan))
   .pipe(
     asyncAndThen(convertAsync(validateUsernameNotEmpty)),
     asyncAndThen(convertAsync(validateUsernameHasValidChars)),
@@ -24,6 +25,6 @@ of(Result.ok<User, string>(dorothyVaughan))
   .then(result => {
     result.match({
       Ok: user => printSavedUser(user),
-      Err: errMsg => printError(errMsg),
+      Err: error => printError(error),
     });
   });

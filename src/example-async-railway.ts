@@ -8,11 +8,12 @@ import {
   validateUsernameIsUnqique,
   printValidUser,
   printError,
+  UserError,
 } from './lib';
 
 const graceHopper = new User('gracehopper', 'Grace', 'Hopper');
 
-AsyncRailway.leaveTrainStation(Result.ok<User, string>(graceHopper))
+AsyncRailway.leaveTrainStation(Result.ok<User, UserError>(graceHopper))
   .andThen(convertAsync(validateUsernameNotEmpty))
   .andThen(convertAsync(validateUsernameNotEmpty))
   .andThen(validateUsernameIsUnqique)
@@ -20,6 +21,6 @@ AsyncRailway.leaveTrainStation(Result.ok<User, string>(graceHopper))
   .then(result => {
     result.match({
       Ok: user => printValidUser(user),
-      Err: errMsg => printError(errMsg),
+      Err: error => printError(error),
     });
   });
